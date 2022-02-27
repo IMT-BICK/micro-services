@@ -3,4 +3,5 @@ export default interface User {
     name: string;
     password: string;
     score: number;
+    admin: boolean;
 };
