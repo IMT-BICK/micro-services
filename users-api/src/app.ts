@@ -1,9 +1,10 @@
 import express from 'express';
-import * as bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
+
+/**
+ * Instanciation Express et middlewares
+ */
 const app = express();
-
-import users from './users';
-
 app.use(bodyParser.json({
     limit: '50mb',
     verify(req: any, res, buf, encoding) {
@@ -11,10 +12,10 @@ app.use(bodyParser.json({
     }
 }));
 
-app.get('/', (req, res) => {
-    return res.status(200).send('Hello World');
-});
-
-app.use('/user', users);
+/**
+ * Appel des routeurs
+ */
+import router from './router';
+app.use(router);
 
 export default app;

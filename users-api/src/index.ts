@@ -1,8 +1,11 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import app from './app';
 
-dotenv.config();
+import UserRepository from './UserRepository';
 
-app.listen(process.env.NODE_PORT, () => {
-    console.log(`En écoute sur ${process.env.NODE_PORT}`);
+const port = process.env.NODE_PORT ?? 5000;
+app.listen(port, () => {
+    UserRepository.applyMigration();
+
+    console.log(`En écoute sur 0.0.0.0:${port}`);
 });
