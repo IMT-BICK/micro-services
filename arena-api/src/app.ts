@@ -3,7 +3,8 @@ import express from 'express';
 import bearerToken from 'express-bearer-token';
 import cookieParser from 'cookie-parser';
 
-import router from './router';
+import MatchRouter from './Match/router';
+import DeckRouter from './Deck/router';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json({
 app.use(bearerToken());
 app.use(cookieParser());
 
-app.use(router);
+app.use('/match', MatchRouter);
+app.use('/deck', DeckRouter);
 
 export default app;

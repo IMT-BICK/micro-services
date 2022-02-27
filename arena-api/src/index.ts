@@ -1,9 +1,9 @@
 import app from './app';
 
-import MatchRepository from './MatchRepository';
+import { applyMigrations } from './database';
 
 const PORT = process.env.NODE_PORT ?? 5002;
 app.listen(PORT, () => {
-    MatchRepository.applyMigrations();
+    applyMigrations();
     console.log(`En écoute sur 0.0.0.0:${PORT}`);
 });

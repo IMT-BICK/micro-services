@@ -58,6 +58,23 @@ export default {
                     'Authorization': `Bearer ${req.token}`
                 }
             });
+            
+            const challengerMatchesCount: number = MatchRepository.getUserMatches(challenger).length;
+            const challengeeMatchesCount: number = MatchRepository.getUserMatches(challengee).length;
+            
+            if (challengerMatchesCount >= 3) {
+                return res.status(403).json({
+                    status: 403,
+                    message: 'Vous ne pouvez pas avoir plus de 3 combats à la fois'
+                });
+            }
+
+            if (challengeeMatchesCount >= 3) {
+                return res.status(403).json({
+                    status: 403,
+                    message: `Votre adversaire a 3 matches en cours et ne peut donc pas être invité à un autre match`
+                });
+            }
     
             MatchRepository.createMatch(challenger, challengee);
 
