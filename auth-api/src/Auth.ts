@@ -18,7 +18,7 @@ export default {
             const payload = verify(token, privateKey, { algorithms: ['RS256'] }) as JwtPayload;
             return payload.user;
         } catch (e) {
-            console.error(e.message);
+            return false;
         }
     }
 
