@@ -27,21 +27,23 @@ app.use(body_parser_1.default.json({
 }));
 app.post('/generate', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.body;
-    const response = yield axios_1.default.post(USERS_API_URL + '/check', user, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    if (response.status !== 200) {
-        return res.status(403).json({
-            status: 403,
-            message: response.data.message
+    try {
+        const response = yield axios_1.default.post(USERS_API_URL + '/check', user, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const token = Auth_1.default.genToken(response.data);
+        return res.status(200).json({
+            token
         });
     }
-    const token = Auth_1.default.genToken(response.data);
-    return res.status(200).json({
-        token
-    });
+    catch (e) {
+        return res.status(403).json({
+            status: 403,
+            message: e.message
+        });
+    }
 }));
 app.post('/verify', (req, res) => {
     const { token } = req.body;

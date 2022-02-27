@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import bearerToken from 'express-bearer-token';
+import cookieParser from 'cookie-parser';
 
 /**
  * Instanciation Express et middlewares
@@ -11,6 +13,9 @@ app.use(bodyParser.json({
         req.rawBody = buf;
     }
 }));
+
+app.use(bearerToken());
+app.use(cookieParser());
 
 /**
  * Appel des routeurs
