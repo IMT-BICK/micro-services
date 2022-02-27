@@ -14,7 +14,17 @@ app.use(bodyParser.json({
     }
 }));
 
-app.use(bearerToken());
+app.use(bearerToken({
+    bodyKey: 'access_token',
+    queryKey: 'access_token',
+    headerKey: 'Bearer',
+    reqKey: 'token',
+    cookie: {
+        signed: false,
+        secret: '',
+        key: 'access_token'
+    }
+  }));
 app.use(cookieParser());
 
 /**
