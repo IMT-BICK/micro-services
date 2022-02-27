@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const MatchController_1 = __importDefault(require("./MatchController"));
-const AuthMiddleware_1 = __importDefault(require("./middlewares/AuthMiddleware"));
+const AuthMiddleware_1 = __importDefault(require("../middlewares/AuthMiddleware"));
 const router = (0, express_1.Router)();
 router.get('/', AuthMiddleware_1.default.auth, MatchController_1.default.getMatches);
 router.get('/:id', AuthMiddleware_1.default.auth, MatchController_1.default.getMatch);

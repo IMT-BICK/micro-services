@@ -3,9 +3,7 @@ import Database from 'better-sqlite3';
 import { v4 as uuid } from 'uuid';
 import { Match } from './Match';
 
-const db = new Database('matches.sql', {
-    verbose: console.log
-});
+import { db } from '../database';
 
 export default {
 
@@ -18,7 +16,9 @@ export default {
     },
 
     getUserMatches(user: string): Match[] {
-        return db.prepare('SELECT id, challenger_id, challengee_id FROM matches WHERE challenger_id = :id OR challengee_id = :id').all({ id: user });
+        const matches: Match[] = db.prepare('SELECT id, challenger_id, challengee_id FROM matches WHERE challenger_id = :id OR challengee_id = :id').all({ id: user });
+
+        return matches;
     },
 
     createMatch(challenger: string, challengee: string) {
@@ -44,11 +44,6 @@ export default {
 
     acceptInvite(id: string) {
         return db.prepare('UPDATE matches SET challengee_date = ? WHERE id = ?').run(new Date().toISOString(), id);
-    },
-
-    applyMigrations() {
-        const file = fs.readFileSync('schema.sql', 'utf-8');
-        db.exec(file);
     }
 
 }

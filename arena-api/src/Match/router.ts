@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import MatchController from './MatchController';
-import AuthMiddleware from './middlewares/AuthMiddleware';
+import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 const router = Router();
 
