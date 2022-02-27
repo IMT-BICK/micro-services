@@ -1,6 +1,6 @@
 export interface Match { 
     id: string;
-    challengerId: string;
-    challengeeId: string;
-    challengeeDate: Date;
+    challenger_id: string;
+    challengee_id: string;
+    challengee_date: string;
 }
