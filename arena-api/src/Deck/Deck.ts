@@ -4,5 +4,4 @@ export interface Deck {
     match_id: string;
     pokemon_id: number;
     played: boolean;
-    hp: number;
 };

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 
 import MatchRouter from './Match/router';
 import DeckRouter from './Deck/router';
+import RoundRouter from './Round/router';
 
 const app = express();
 
@@ -20,5 +21,6 @@ app.use(cookieParser());
 
 app.use('/match', MatchRouter);
 app.use('/deck', DeckRouter);
+app.use('/round', RoundRouter);
 
 export default app;

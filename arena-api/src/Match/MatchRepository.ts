@@ -21,6 +21,16 @@ export default {
         return matches;
     },
 
+    isUserMatch(user: string, match: string): boolean {
+        const matches: Match[] = this.getUserMatches(user);
+
+        if (matches.find(item => item.id === match)) {
+            return true;
+        }
+
+        return false;
+    },
+
     createMatch(challenger: string, challengee: string) {
         const id = uuid();
         return db.prepare('INSERT INTO matches (id, challenger_id, challengee_id) VALUES (?, ?, ?)').run(id, challenger, challengee);
