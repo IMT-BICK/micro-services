@@ -7,7 +7,8 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const express_1 = __importDefault(require("express"));
 const express_bearer_token_1 = __importDefault(require("express-bearer-token"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const router_1 = __importDefault(require("./router"));
+const router_1 = __importDefault(require("./Match/router"));
+const router_2 = __importDefault(require("./Deck/router"));
 const app = (0, express_1.default)();
 app.use(body_parser_1.default.json({
     limit: '50mb',
@@ -17,6 +18,7 @@ app.use(body_parser_1.default.json({
 }));
 app.use((0, express_bearer_token_1.default)());
 app.use((0, cookie_parser_1.default)());
-app.use(router_1.default);
+app.use('/match', router_1.default);
+app.use('/deck', router_2.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map

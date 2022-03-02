@@ -27,7 +27,7 @@ app.post('/generate', async (req: Request, res: Response): Promise<Response> => 
 
         const token = Auth.genToken(response.data);
 
-        return res.status(200).json({
+        return res.status(201).json({
             token
         });
     } catch (e) {
