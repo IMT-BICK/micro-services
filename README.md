@@ -69,6 +69,8 @@ L'API Auth a pour unique but de communiquer avec l'API Users et d'encapsuler la 
 
 Toutes les US ont été réalisées à l'exception de celles liées à la jouabilité du jeu, qui, en raison de sa nature algorithmique pure, n'a pas été retenue lors du développement par faute de temps.
 
+Les statistiques de jeu ne sont pas encore implémentées, ni les différents outils d'administration. Dans le cadre d'une API surchargée, cependant, il est possible de pousser les statistiques à un moteur de base de données NoSQL en clé-valeur, comme Redis, ou d'utiliser des outils de gestion de métriques, comme Prometheus, permettant de basculer la charge sur ces services, légers, plutôt que sur l'API critique du système.
+
 ## Référence
 
 ### Mécanisme d'authentification
