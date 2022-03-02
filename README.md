@@ -288,3 +288,8 @@ Pour s'identifier auprès des autres API, inclure l'un des éléments suivants d
 - Réponse : `Round[]` (TODO)
 - Codes de retour : `200 OK`, `403 Forbidden`
 
+## Contributeurs
+
+- Léo BEAUJEAN <leo.beaujean@imt-atlantique.net>
+- Yan IMENSAR <yan.imensar@imt-atlantique.net>
+- Nicolas KIRCHHOFFER <nicolas.kirchhoffer@imt-atlantique.net>
