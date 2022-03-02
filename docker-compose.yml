@@ -1,0 +1,46 @@
+version: "3.0"
+services:
+  arena:
+    build: ./arena-api
+    ports:
+    - 5000:5000
+    volumes:
+    - ./arena-api/arena.db:/srv/arena.db:rw
+    environment:
+      NODE_PORT: 5000
+      AUTH_API_URL: http://auth:5001
+      USERS_API_URL: http://users:5002
+      POKEMON_API_URL: https://pokeapi.co/api/v2
+    links:
+    - auth
+    - users
+  auth:
+    build: ./auth-api
+    ports:
+    - 5001:5001
+    volumes:
+    - ./auth-api/private.key:/srv/private.key
+    environment:
+      NODE_PORT: 5001
+      USERS_API_URL: http://users:5002
+    links:
+    - users
+  users:
+    build: ./users-api
+    ports:
+    - 5002:5002
+    volumes:
+    - ./users-api/users.db:/srv/users.db:rw
+    environment:
+      NODE_PORT: 5002
+      AUTH_API_URL: http://auth:5001
+  nginx:
+    image: nginx:latest
+    ports:
+    - 80:80
+    volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    links:
+    - arena
+    - auth
+    - users

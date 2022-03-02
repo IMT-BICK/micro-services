@@ -50,10 +50,6 @@ export default {
 
         try {
             const pokemon = await PokemonRepository.getPokemon(data.pokemon);
-            const hp = pokemon.stats.find((item: any) => item.stat.name === 'hp').base_stat;
-
-            console.log(hp);
-
             if (DeckRepository.isInDeck(pokemon.id, data.match, req.user.id)) {
                 return res.status(403).json({
                     status: 403,
@@ -68,7 +64,7 @@ export default {
                 });
             }
 
-            DeckRepository.createDeck(data.match, pokemon.id, req.user.id, hp);
+            DeckRepository.createDeck(data.match, pokemon.id, req.user.id);
 
             return res.status(201).json({
                 message: `Ce Pokémon a bien été ajouté à votre deck`
