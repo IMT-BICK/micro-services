@@ -22,7 +22,7 @@ graph TB;
 1. Dans le dossier `auth-api`, exécutez la commande suivante :
 
 ```bash
-openssl genrsa -out private.pem 4096
+openssl genrsa -out private.key 4096
 ```
 
 La taille de la clé (4096 Ko) peut être réduite à 2048 Ko si nécessaire (consommation CPU trop élevée par exemple).
